@@ -1,4 +1,5 @@
 import 'package:covid_19_api_exam/screen/model/covide_model.dart';
+import 'package:covid_19_api_exam/utiles/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +30,12 @@ class _HomeScreenState extends State<HomeScreen> {
               },
               icon: Icon(Icons.search_rounded),
             ),
+            IconButton(
+              onPressed: () {
+                Get.toNamed("/book");
+              },
+              icon: Icon(Icons.bookmark_add_outlined),
+            ),
           ],
         ),
         body: FutureBuilder(
@@ -37,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 return Text("${snapshot.error}");
               } else if (snapshot.hasData) {
                 List<CovidModel>? list = snapshot.data;
+                CovidModel model=CovidModel();
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     return InkWell(
@@ -57,6 +65,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 "https://m.media-amazon.com/images/I/61y2VVWcGBL._AC_UL600_FMwebp_QL65_.jpg")
                             : Image.network("${list[index].countryInfo!.flag}",height: 50,width: 50,),
                         title: Text("${list[index].country}"),
+                        trailing: IconButton(onPressed: () {
+                          DatabaseHelper.helper.insertdb(model: model );
+                        }, icon: Icon(Icons.bookmark_add_outlined)),
                       ),
                     );
                   },

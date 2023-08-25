@@ -1,4 +1,5 @@
 import 'package:covid_19_api_exam/utiles/api_helper.dart';
+import 'package:covid_19_api_exam/utiles/database_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -40,5 +41,12 @@ class CovidController extends GetxController
       }
       list.value=List.from(fiterlist);
     }
+  }
+
+
+  RxList dataList=[].obs;
+  Future<void> getData()
+  async {
+    dataList.value =await DatabaseHelper.helper.readDb();
   }
 }

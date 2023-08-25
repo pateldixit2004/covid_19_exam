@@ -1,3 +1,4 @@
+import 'package:covid_19_api_exam/screen/view/bookmard_screen.dart';
 import 'package:covid_19_api_exam/screen/view/home_screen.dart';
 import 'package:covid_19_api_exam/screen/view/serch_screen.dart';
 import 'package:covid_19_api_exam/screen/view/view_screen.dart';
@@ -13,6 +14,7 @@ void main()
         '/':(p0) => HomeScreen(),
         '/serch':(p0) => SerchScreen(),
         '/dataview':(p0) => DataViewScreen(),
+        '/book':(p0) => BookmardScreen(),
       },
     )
   );
